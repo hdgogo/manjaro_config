@@ -14,5 +14,5 @@ fi
 # 定义SSH连接别名
 for host in $(awk '/^Host/{if ($2!="*") print $2}' ~/.ssh/config)
 do
-    alias $host=ssh $host
+    alias $host="ssh $host"
 done
