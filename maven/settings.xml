@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+    <mirrors>
+        <mirror>
+          <id>nexus-aliyun</id>
+          <name>Nexus aliyun</name>
+          <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+          <mirrorOf>external:http:*,central,!nexus-sklf</mirrorOf>
+        </mirror>
+  </mirrors>
+  <profiles>
+    <profile>
+      <id>sklf</id>
+      <repositories>
+        <repository>
+          <id>nexus-sklf</id>
+          <name>Nexus sklf</name>
+          <url>http://10.1.1.2:8081/nexus/content/groups/public/</url>
+          <releases>
+              <enabled>true</enabled>
+          </releases>
+          <snapshots>
+              <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+    <profile>
+      <id>aliyun</id>
+      <repositories>
+        <repository>
+          <id>nexus-aliyun</id>
+          <name>Nexus aliyun</name>
+          <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+          <releases>
+              <enabled>true</enabled>
+          </releases>
+          <snapshots>
+              <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>aliyun</activeProfile>
+    <activeProfile>sklf</activeProfile>
+  </activeProfiles>
+
+</settings>

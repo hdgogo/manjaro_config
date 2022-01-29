@@ -1,0 +1,18 @@
+# MYCONFIG_ZSH_PROFILE
+# Use powerline
+USE_POWERLINE="true"
+
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+# Use manjaro zsh prompt
+if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
+  source /usr/share/zsh/manjaro-zsh-prompt
+fi
+
+
+# 定义SSH连接别名
+for host in $(awk '/^Host/{if ($2!="*") print $2}' ~/.ssh/config)
+do
+    alias $host=ssh $host
+done
