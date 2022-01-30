@@ -4,7 +4,7 @@ Host qhsvr01
 Host qhsvr02
     Hostname    47.94.220.254
     User        qhadmins02
-Host qhsver03
+Host qhsvr03
     Hostname    60.205.165.14
     User        qhadmins03
 Host qhsvr04
@@ -13,19 +13,19 @@ Host qhsvr04
 Host qhsvr05
     Hostname    101.200.187.224
     User        qhadmins05
-Host qhsver06
+Host qhsvr06
     Hostname    39.105.102.81
     User        qhadmins06
-Host qhsver07
+Host qhsvr07
     Hostname    39.105.103.25
-    User        qhadmins06
+    User        qhadmins07
 Host sksvr01
     Hostname    47.113.102.138
     User        skadmins01
 Host sksvr02
     Hostname    47.106.227.62
     User        skadmins02
-Host sksver03
+Host sksvr03
     Hostname    112.74.160.156
     User        skadmins03
 Host svr01

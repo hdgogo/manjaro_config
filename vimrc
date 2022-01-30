@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Author: hongda <hongdago@aliyun.com>
-" Repository : https://github.com/hongdago/myconfig
+" Repository : https://github.com/hongdago/manjaro_config.git
 " Create Date: 2022-01-27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
