@@ -111,6 +111,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'godlygeek/tabular'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Chiel92/vim-autoformat'
+Plug 'einars/js-beautify'
+
 
 call plug#end()  
 
@@ -129,6 +132,13 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
+" autoformat 快捷
+nnoremap <F4> :Autoformat<cr>
+
+" 格式化json报文
+vnoremap <F7> : !jq<cr>
+vnoremap <F8> : s/"{/{/ge\|s/}"/}/ge\|s/\\"/"/ge\|<cr>gv: !jq<cr>
 
 
 " 编辑vimrc相关配置文件

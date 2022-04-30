@@ -9,7 +9,15 @@
           <name>Nexus aliyun</name>
           <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
           <mirrorOf>external:http:*,central,!nexus-sklf</mirrorOf>
+          <blocked>false</blocked>
         </mirror>
+        <mirror>
+          <id>nexus-sklf</id>
+          <name>Nexus sklf</name>
+          <url>http://10.1.1.2:8081/nexus/content/groups/public</url>
+          <mirrorOf>nexus-sklf</mirrorOf>
+          <blocked>false</blocked>
+      </mirror>
   </mirrors>
   <profiles>
     <profile>
@@ -45,6 +53,19 @@
       </repositories>
     </profile>
   </profiles>
+ 
+  <servers>
+     <server>
+       <id>releases</id>
+       <username>admin</username>
+       <password>root</password>
+     </server>
+     <server>
+       <id>snapshots</id>
+       <username>admin</username>
+       <password>root</password>
+     </server>
+ </servers>
 
   <activeProfiles>
     <activeProfile>aliyun</activeProfile>

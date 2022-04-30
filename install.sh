@@ -70,6 +70,36 @@ function backup_m2_setting_file(){
 	fi
 }
 
+# 备份原有的.m2/setting.xml文件
+function backup_npm_setting_file(){
+	old_setting="$HOME/.npmrc"
+	is_exist=$(is_exist_file $old_setting)
+	if [ $is_exist == 1 ];then
+		time=$(get_datetime)
+		backup_setting=$old_setting"_bak_"$time
+		read -p "Find "$old_setting" already exists,backup "$old_setting" to "$backup_setting"? [Y/N] " ch
+		if [[ $ch == "Y" ]] || [[ $ch == "y" ]];then
+			cp $old_setting $backup_setting
+		fi
+        rm -rf $old_setting
+	fi
+}
+
+# 备份原有的.config/pip/pip.conf文件
+function backup_pip_setting_file(){
+	old_setting="$HOME/.config/pip/pip.conf"
+	is_exist=$(is_exist_file $old_setting)
+	if [ $is_exist == 1 ];then
+		time=$(get_datetime)
+		backup_setting=$old_setting"_bak_"$time
+		read -p "Find "$old_setting" already exists,backup "$old_setting" to "$backup_setting"? [Y/N] " ch
+		if [[ $ch == "Y" ]] || [[ $ch == "y" ]];then
+			cp $old_setting $backup_setting
+		fi
+        rm -rf $old_setting
+	fi
+}
+
 # 备份原有的.vim 目录
 function backup_vim_dir(){
 	old_vim="$HOME/.vim"
@@ -122,6 +152,15 @@ function pre_maven_init(){
     ln -s $WORKDIR/maven/settings.xml ~/.m2/settings.xml
 }
 
+function pre_pip_init(){
+    pip_dir="$HOME/.config/pip"
+    is_exist=$(is_exist_dir $pip_dir)
+	if [ $is_exist == 0 ];then
+        mkdir -p ~/.config/pip
+    fi
+    ln -s $WORKDIR/pip/pip.conf ~/.config/pip/pip.conf
+}
+
 function pre_ssh_init(){
     ssh_dir="$HOME/.ssh"
     is_exist=$(is_exist_dir $ssh_dir)
@@ -131,6 +170,8 @@ function pre_ssh_init(){
     fi
     ln -s $WORKDIR/ssh/config ~/.ssh/config
 }
+
+
 
 function is_have_plugins_config(){
     zsh_config=$1
@@ -156,6 +197,17 @@ function init_vim_config(){
 function init_ssh_config(){
     backup_sshconfig_file
     pre_ssh_init
+}
+
+
+function init_npm_config(){
+    backup_npm_setting_file
+    ln -s $WORKDIR/npm/npmrc ~/.npmrc
+}
+
+function init_pip_config(){
+    backup_pip_setting_file
+    pre_pip_init
 }
 
 function gen_ssh_agent_identify(){
@@ -209,6 +261,20 @@ function main(){
         adjust_zsh_config
     else
         echo "Skip initialize zsh configuration"
+    fi
+
+    read -p "Whether to initializw npm configuration ? [Y/N]" ch
+    if [[ $ch == "Y" ]] || [[ $ch == "y" ]];then
+        init_npm_config
+    else
+        echo "Skip initialize npm configuration"
+    fi
+
+    read -p "Whether to initializw pip configuration ? [Y/N]" ch
+    if [[ $ch == "Y" ]] || [[ $ch == "y" ]];then
+        init_pip_config
+    else
+        echo "Skip initialize pip configuration"
     fi
 }
 
