@@ -105,6 +105,27 @@ if has("gui_running")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 自定义函数
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python文件模板
+function! MyPyTemplate()
+    let user_name = $USER
+    call setline(1, '#!/bin/python3')
+    call setline(2, "# -*- coding: utf-8 -*-")
+    call setline(3, "\"\"\"")
+    call setline(4, " FileName : " . expand('%:t'))
+    call setline(5, " Author : " . user_name)
+    call setline(6, "\"\"\"")
+    call setline(7, "")
+    call setline(8, "")
+    call setline(9, "")
+    call cursor(9, 1)
+endfunction
+autocmd BufNewFile *.py call MyPyTemplate()      "新建python文件时， 按照模板文本生成
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
