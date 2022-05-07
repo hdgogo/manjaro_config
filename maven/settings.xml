@@ -1,75 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+<?xml version="1.0" encoding="utf-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
     <mirrors>
         <mirror>
-          <id>nexus-aliyun</id>
-          <name>Nexus aliyun</name>
-          <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-          <mirrorOf>external:http:*,central,!nexus-sklf</mirrorOf>
-          <blocked>false</blocked>
+            <id>nexus-aliyun</id>
+            <name>Nexus aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <mirrorOf>external:http:*,central,!nexus-inner-sklf</mirrorOf>
+            <blocked>false</blocked>
         </mirror>
-        <mirror>
-          <id>nexus-sklf</id>
-          <name>Nexus sklf</name>
-          <url>http://10.1.1.2:8081/nexus/content/groups/public</url>
-          <mirrorOf>nexus-sklf</mirrorOf>
-          <blocked>false</blocked>
-      </mirror>
-  </mirrors>
-  <profiles>
-    <profile>
-      <id>sklf</id>
-      <repositories>
-        <repository>
-          <id>nexus-sklf</id>
-          <name>Nexus sklf</name>
-          <url>http://10.1.1.2:8081/nexus/content/groups/public/</url>
-          <releases>
-              <enabled>true</enabled>
-          </releases>
-          <snapshots>
-              <enabled>true</enabled>
-          </snapshots>
-        </repository>
-      </repositories>
-    </profile>
-    <profile>
-      <id>aliyun</id>
-      <repositories>
-        <repository>
-          <id>nexus-aliyun</id>
-          <name>Nexus aliyun</name>
-          <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-          <releases>
-              <enabled>true</enabled>
-          </releases>
-          <snapshots>
-              <enabled>true</enabled>
-          </snapshots>
-        </repository>
-      </repositories>
-    </profile>
-  </profiles>
- 
-  <servers>
-     <server>
-       <id>releases</id>
-       <username>admin</username>
-       <password>root</password>
-     </server>
-     <server>
-       <id>snapshots</id>
-       <username>admin</username>
-       <password>root</password>
-     </server>
- </servers>
-
-  <activeProfiles>
-    <activeProfile>aliyun</activeProfile>
-    <activeProfile>sklf</activeProfile>
-  </activeProfiles>
-
+    </mirrors>
+    <profiles>
+        <profile>
+            <id>sklf</id>
+            <repositories>
+                <repository>
+                    <id>nexus-inner-sklf</id>
+                    <name>inner nexus in sklf</name>
+                    <url>http://10.1.1.2:8081/nexus/content/groups/public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>wh_sklf</id>
+            <repositories>
+                <repository>
+                    <id>nexus-outer-sklf</id>
+                    <name>outer nexus in sklf</name>
+                    <url>http://182.92.128.83:8081/repository/maven-central/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+    <servers>
+        <server>
+            <id>releases</id>
+            <username>admin</username>
+            <password>root</password>
+        </server>
+        <server>
+            <id>snapshots</id>
+            <username>admin</username>
+            <password>root</password>
+        </server>
+    </servers>
+    <activeProfiles>
+        <activeProfile>sklf</activeProfile>
+        <activeProfile>wh_sklf</activeProfile>
+    </activeProfiles>
 </settings>
